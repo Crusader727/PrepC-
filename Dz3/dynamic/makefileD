@@ -1,0 +1,15 @@
+maind: main.o libfile.so
+	gcc -o maind main.o -L. -lfile  -Wl,-rpath,.
+
+main.o: main.c
+	gcc -c -fPIC main.c
+
+libfile.so: file.o
+	gcc -shared -fPIC file.o -o libfile.so
+
+file.o: file.c
+	gcc -c -fPIC file.c
+
+clean:
+	rm -f *.o *.so maind
+
